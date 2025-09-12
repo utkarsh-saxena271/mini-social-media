@@ -1,15 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const authMiddleware = require('../middlewares/auth.middleware')
+const {createPostController} = require('../controllers/post.controller')
+const multer = require('multer');
 
+const upload = multer({storage: multer.memoryStorage( )})
 // POST /api/posts[protected]
-router.post('/post',async (req,res)=>{
-    const token = req.cookies.token;
-    if(!token){
-        return res.status(401).json({
-            message : 'Unauthorised access, please login first '
-        })
-    }
-});
+router.post('/',authMiddleware,upload.single("image"),createPostController);
 
 
 module.exports = router
