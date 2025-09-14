@@ -17,7 +17,7 @@ async  function generateCaption(base64ImageFile){
   ];
   
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     contents: contents,
     config:{
       systemInstruction:`
@@ -25,8 +25,6 @@ async  function generateCaption(base64ImageFile){
       You generate single caption for the image. 
       Your caption should be short and concise.
       You use hashtags and emojis in the caption. 
-      Generate caption using tapori wayh.
-      The caption should be in dark humour.
       `
     }
   });
